@@ -31,7 +31,7 @@ export const TitleListItem = ({
   const selectedClasses = isSelected ? "bg-bg-light text-title-hover" : "";
   const classes = `${baseClasses} ${hoverClasses} ${selectedClasses} ${className}`;
 
-  const displayTitle = content.title ?? "(タイトルなし)";
+  const displayTitle = content.title ?? "(新規タイトル)";
 
   const handleDelete = async (e: React.MouseEvent) => {
     e.stopPropagation(); // 親のonClickを防ぐ
@@ -42,7 +42,13 @@ export const TitleListItem = ({
 
     try {
       await deleteContent(content.id);
-      router.refresh(); // リストを更新
+
+      // 削除したコンテンツが現在表示中の場合、ホームページにリダイレクト
+      if (isSelected) {
+        router.push("/");
+      } else {
+        router.refresh(); // リストを更新
+      }
     } catch (error) {
       console.error("Failed to delete content:", error);
       alert("削除に失敗しました");
@@ -50,13 +56,10 @@ export const TitleListItem = ({
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <button
-        type="button"
-        className={classes}
-        onClick={() => onClick(content.id)}
-        {...props}
-      >
+    <div
+      className={`flex items-center gap-2 w-full justify-between ${classes}`}
+    >
+      <button type="button" onClick={() => onClick(content.id)} {...props}>
         <Typography value="body" className="truncate flex-1 text-left">
           {displayTitle}
         </Typography>

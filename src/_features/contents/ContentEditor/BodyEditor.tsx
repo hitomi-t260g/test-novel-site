@@ -60,13 +60,14 @@ export const BodyEditor = ({
             maxLength={2000}
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex gap-[10px] w-[90px]">
           <div className="w-[90px]">
             <Button
               iconType="cancel"
               label="Cancel"
               variant="primary"
               onClick={handleCancel}
+              width="40px"
             />
           </div>
           <div className="w-[90px]">
@@ -75,6 +76,7 @@ export const BodyEditor = ({
               label="Save"
               variant="primary"
               onClick={handleSave}
+              width="40px"
             />
           </div>
         </div>

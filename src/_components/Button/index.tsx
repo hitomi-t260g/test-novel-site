@@ -46,14 +46,15 @@ export const Button = ({
   variant = "primary",
   className = "",
   disabled = false,
+  width = "90px",
   ...props
 }: ButtonProps) => {
   const baseClasses =
-    "flex flex-col items-center justify-center min-w-[40px] w-[90px] h-10 rounded cursor-pointer";
+    "flex flex-col items-center justify-center min-w-[40px] h-10 rounded cursor-pointer";
   const disabledClasses = disabled
     ? "opacity-80 cursor-not-allowed pointer-events-none"
     : "";
-  const classes = `${baseClasses} ${variantClasses[variant]} ${disabledClasses} ${className}`;
+  const classes = `${baseClasses} ${variantClasses[variant]} ${disabledClasses} ${className} w-[${width}]`;
 
   return (
     <button type="button" className={classes} disabled={disabled} {...props}>

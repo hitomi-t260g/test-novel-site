@@ -24,7 +24,7 @@ export const TitleEditor = ({
   const [title, setTitle] = useState(initialTitle ?? "");
   const router = useRouter();
 
-  const displayTitle = initialTitle ?? "(タイトルなし)";
+  const displayTitle = initialTitle ?? "(新規タイトル)";
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -61,13 +61,14 @@ export const TitleEditor = ({
             maxLength={100}
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-[10px] w-[90px]">
           <div className="w-[90px]">
             <Button
               iconType="cancel"
               label="Cancel"
               variant="primary"
               onClick={handleCancel}
+              width="40px"
             />
           </div>
           <div className="w-[90px]">
@@ -76,6 +77,7 @@ export const TitleEditor = ({
               label="Save"
               variant="primary"
               onClick={handleSave}
+              width="40px"
             />
           </div>
         </div>
