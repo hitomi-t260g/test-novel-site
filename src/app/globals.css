@@ -8,8 +8,51 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-dashboard: var(--font-noto-sans-jp);
+
+  /* Typography - Font Sizes */
+  --text-heading: 24px;
+  --text-body: 16px;
+  --text-caption: 12px;
+  --text-minimum: 10px;
+
+  /* Typography - Font Weights */
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+
+  /* Color Theme - Brand Colors */
+  --color-brand: #4cb3f8;
+
+  /* Color Theme - Text Colors */
+  --color-text-regular: #333333;
+  --color-text-light: #4d4d4d;
+  --color-text-brand: #4cb3f8;
+
+  /* Color Theme - Button Colors */
+  --color-button-primary: #4cb3f8;
+  --color-button-normal: #b3b3b3;
+  --color-button-secondary: #ffffff;
+  --color-button-secondary-border: #4cb3f8;
+
+  /* Color Theme - Background Colors */
+  --color-bg-light: #f5f8fa;
+  --color-bg-dark: #c8e6fa;
+  --color-side-menu-background: #f6f8fa;
+
+  /* Button Hover/Active Colors */
+  --color-button-primary-hover: #3c8ec4;
+  --color-button-primary-active: #347cab;
+  --color-button-secondary-hover: #cccccc;
+  --color-button-normal-hover: #999999;
+  --color-button-normal-active: #808080;
+
+  /* IconButton Hover/Pressed Colors */
+  --color-icon-button-hover: #e6e6e6;
+  --color-icon-button-pressed: #cccccc;
+
+  /* SideMenu TitleList Hover Color */
+  --color-title-hover: #32a8f8;
+  --color-border: #f6f8fa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +65,4 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

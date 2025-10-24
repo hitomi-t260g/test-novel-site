@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Novel Frontend
 
-## Getting Started
+小説投稿ダッシュボード
 
-First, run the development server:
+## 概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+このプロジェクトは、小説の投稿・管理を行うためのダッシュボードアプリケーションです。最新の投稿内容をユーザーに届けるため、Server-Side Rendering (SSR) を採用しています。
+
+## 技術スタック
+
+### Next.js を採用した理由
+
+- **SSR対応**: 最新の小説投稿内容を常に反映するため、サーバーサイドレンダリングが必須
+- **拡張性**: 今後の画像アップロード機能や複雑なUI要件に対応可能
+- **開発体験**: ファイルベースルーティング、APIルート、最適化機能など、モダンな開発機能を提供
+- **次候補**: react-router v7のas フレームワーク（next/Imageの使い勝手の良さをとりました）
+
+### 使用技術
+
+- Next.js 15.5.6
+- React 19.1.0
+- TypeScript
+- Tailwind CSS 4
+- Biome (Linter & Formatter)
+- Playwright (E2Eテスト)
+
+## ディレクトリ構成
+
+```text
+src/
+├── app/                  # Next.jsのApp Router
+│   └── contents/          # 小説投稿関連のルーティング
+│       └── [slug]/       # 動的ルート
+├── _features/            # 機能別コンポーネント
+│   ├── common/           # 共通機能
+│   └── contents/            # コンテンツ投稿機能
+│       └── TitleListItem/         # コンテンツタイトルリスト
+├── _components/          # 共有UIコンポーネント
+│                         # (サイドメニュー、ボタンなど)
+└── _constants/           # 定数定義
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 設計思想
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **app/**: Next.jsのルーティング機能を活用し、ページレベルのコンポーネントを配置
+- **_features/**: 小説投稿に関連する機能単位でコンポーネントをまとめ、ドメインロジックを整理
+- **_components/**: レイアウト用のサイドメニューやボタンなど、汎用的なUIコンポーネントを配置
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## スクリプト
 
-## Learn More
+### 開発コマンド
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Turbopackを使用した開発サーバーを起動します。高速なHMR (Hot Module Replacement) が利用可能です。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ビルド
 
-## Deploy on Vercel
+```bash
+pnpm build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+本番環境用に最適化されたアプリケーションをビルドします。Turbopackを使用して高速にビルドを実行します。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 本番起動
+
+```bash
+pnpm start
+```
+
+ビルド済みのアプリケーションを本番モードで起動します。
+
+### コード品質管理
+
+```bash
+pnpm lint
+```
+
+Biomeを使用してコードの静的解析を実行し、潜在的な問題を検出します。
+
+```bash
+pnpm format
+```
+
+Biomeのフォーマッターを使用してコードを自動整形します。
+
+### テスト
+
+```bash
+pnpm test
+```
+
+Playwrightを使用してE2Eテストを実行します。
+
+```bash
+pnpm test:ui
+```
+
+Playwrightのインタラクティブなテストランナーを起動し、テストをUIモードで実行・デバッグできます。
+
+## セットアップ
+
+```bash
+# 依存関係のインストール
+pnpm install
+
+# 開発サーバーの起動
+pnpm dev
+```
+
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いてアプリケーションを確認できます。

@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: Content API
+  description: コンテンツ管理API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Development server
+
+tags:
+  - name: Content
+    description: コンテンツ関連のAPI
+
+paths:
+  /content:
+    get:
+      tags:
+        - Content
+      summary: コンテンツ一覧の取得
+      description: コンテンツ一覧を取得します
+      operationId: getAllContentList
+      responses:
+        '200':
+          description: コンテンツ一覧の取得に成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+    post:
+      tags:
+        - Content
+      summary: コンテンツの作成
+      description: 新しいコンテンツが作成されました
+      operationId: addContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContentDTO'
+      responses:
+        '201':
+          description: コンテンツの作成に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+
+  /content/{id}:
+    get:
+      tags:
+        - Content
+      summary: コンテンツの取得
+      description: 指定されたIDのコンテンツを取得します
+      operationId: getContent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: コンテンツID
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: コンテンツの取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '400':
+          description: 不正なリクエスト
+    put:
+      tags:
+        - Content
+      summary: コンテンツの更新
+      description: コンテンツが更新されました
+      operationId: updateContent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: コンテンツID
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContentDTO'
+      responses:
+        '200':
+          description: コンテンツの更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+        '400':
+          description: 不正なリクエスト
+    delete:
+      tags:
+        - Content
+      summary: コンテンツの削除
+      description: コンテンツが削除されました
+      operationId: deleteContent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: コンテンツID
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: コンテンツの削除に成功
+        '400':
+          description: 不正なリクエスト
+
+components:
+  schemas:
+    Content:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: コンテンツのID
+          example: 1
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+          description: コンテンツのタイトル
+          example: 'Hello Title'
+          nullable: true
+        body:
+          type: string
+          maxLength: 2000
+          description: コンテンツの本文
+          example: 'Hello Body'
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          description: 作成日時
+          example: '2025-04-04T00:00:00.000Z'
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          description: 更新日時
+          example: '2025-04-04T00:00:00.000Z'
+          readOnly: true
+      required:
+        - id
+
+    CreateContentDTO:
+      type: object
+      properties:
+        title:
+          type: string
+          description: コンテンツのタイトル
+          example: 'Hello Title'
+        body:
+          type: string
+          description: コンテンツのボディ
+          example: 'Hello Body'
+
+    UpdateContentDTO:
+      type: object
+      properties:
+        title:
+          type: string
+          description: コンテンツのタイトル
+          example: 'Update Title'
+        body:
+          type: string
+          description: コンテンツのボディ
+          example: 'Update Body'
