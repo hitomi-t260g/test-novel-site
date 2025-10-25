@@ -1,0 +1,5 @@
+packages:
+  - apps/*
+  # - packages/*
+  - .docs
+minimumReleaseAge: 1440 # 24 hours
