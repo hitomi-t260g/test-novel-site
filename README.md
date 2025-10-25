@@ -110,4 +110,4 @@ pnpm install
 pnpm dev
 ```
 
-ブラウザで [http://localhost:3000](http://localhost:3000) を開いてアプリケーションを確認できます。
+ブラウザで [http://localhost:3001](http://localhost:3001) を開いてアプリケーションを確認できます。

@@ -16,6 +16,10 @@ export interface ButtonProps
    */
   label: string;
   /**
+   * ボタンの幅
+   */
+  width?: string;
+  /**
    * ボタンのバリエーション（デフォルト: primary）
    */
   variant?: ButtonVariant;
